@@ -1,0 +1,131 @@
+In class Practice
+
+
+
+Drop table course;
+
+CREATE TABLE course (
+    course_id INTEGER PRIMARY KEY,
+    course_name VARCHAR(50) not null,
+    course_desc VARCHAR(100) not null
+);
+
+
+
+
+alter table course add course_day VARCHAR(50);
+
+
+
+select * from course;
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Get all female employees
+==========================
+
+select * from employees
+where gender='F';
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+Get all employees hired after 01-01-1995
+===========================================
+
+select * from employees
+where hire_date > '1995-01-01';
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Get all the valid titles (with to_date equals to 01-01-9999)
+============================================================
+
+select title from titles
+where to_date='9999-01-01';
+
+---------------------------
+
+
+if u want distinct titles: 
+================
+select distinct title from titles
+where to_date='9999-01-01'
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Get all salaries from 60000 to 90000
+====================================
+
+select salary from salaries
+where salary >=40000 and salary <= 90000;
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Get all titles where title is equal to engineer
+================================================
+
+select title from titles
+where title Like '%Engineer%';
+
+--------------------------------
+For distinct titles:
+====================
+select distinct title from titles
+where title Like '%Engineer%';
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Insert a new row into course table with 1, ‘CED-1250’, ‘Big Data Storage’
+==========================================================================
+
+CREATE TABLE course (
+
+    course_id INTEGER PRIMARY KEY,
+
+    course_name VARCHAR(50) not null,
+
+    course_desc VARCHAR(100) not null
+
+);
+
+
+Insert into course (course_id, course_name, course_desc)
+Values(1,'CEBD-1250','Big Data Storage');
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Delete all male employees hired at 01-01-2009
+=============================================
+
+delete from employees
+where gender='M'
+and hire_date='1999-01-01';
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Update the salary of employee 499984 to 100000
+===============================================
+
+INSERT INTO salaries (emp_no, salary,from_date,to_date) 
+VALUES (499984,100000, CURDATE(), '9999-01-01');
+
+UPDATE salaries
+SET to_date=CURDATE() where from_Date='2002-07-27' and emp_no='499984';
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Delete all titles not valid (with to_date not equal to 01-01-9999)
+==================================================================
+
+delete from titles
+where to_date != '9999-01-01';
