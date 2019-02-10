@@ -1,0 +1,135 @@
+Write a SQL query to get the third highest salary of an employee from
+employee_table
+
+
+
+SELECT salary
+FROM salaries
+ORDER BY salary DESC
+LIMIT 2, 1;   
+
+  
+ANSWER:
+156286
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Write a SQL query to find the names of employees that begin with ‘A’
+
+
+
+Alka SQL week 3 homework
+
+
+SELECT 
+    first_name
+FROM
+    employees
+where first_name Like 'A%';
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+What is the difference between ‘HAVING’s CLAUSE and a ‘WHERE’ CLAUSE
+
+HAVING is used after grouping - after a groupby statement. It filters groups.
+
+WHERE is used to filter row by row, and it can not follow a groupby. It doesn't with aggregate functions. 
+      It filters rows from a result.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+List, and explain the elements of an Entities and Relationships model
+
+An entity or a table represents a organization in rows and columns. It has to have a primary key, which can not have any
+null values. The Primary key is also unique to each row. It can not have duplicates. The columns have names that are a specific property or characteristic of this entitiy. And each row, usuallyaddressable by an index, is a small representation of the entire entity. The entity can connect to other tables with its primary key, which becomes a foreigh key in another table...but in this table, it is not a primary key, and is just used as a relatonship betwen the two - it can also have null values.
+
+In a list:
+Primary key - unique and no nulls
+Index - referred to for rows
+Rows - a subset that represents the entire table
+Columns - attributes, or characeteristics of the entity
+Foreign key - a key on a different entity that connects to the table where the same key is a primary key.
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+What are the different categories of SQL statements, what does each group do
+
+Data Definition Language
+
+--It gives the form of the database. It is used to create objects and tables. It decides datatypes, keys, column names and patterns.
+
+Data Manipulation Language
+
+--Used to create, read, update and delete from existing tables. You can mostly use this to extract and read data.
+
+Data Control Language
+
+--Used to control access on ojbects. It can give permissions to tables, or fields within the table. It can give DDL or DML access to individuals or groups.
+
+
+Transaction Control Language
+
+--kind of like a safety net to undo a mistake in SQL. It can rollback to a savepoint if you haven't committed.
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+List, and explain, the different types of joins
+
+Inner Join - gives the matching values in both tables
+Left (outer) join - returns the values on the left table and only matched ones from the right table.
+Right (outer) join - returns the values on the right table and only matched ones from the left table.
+Full (outer) JOIN: returns everything from right and left tables.
+Self Join: A table is compared to itself. Combines rows with other rows in the same table.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+What is the difference between NULL value, Zero, and Blank space
+
+
+NULL - it the abscense of a value...no memory used - we don't know.
+
+Zero - is an arithmatic value of 0
+
+Blank space - is setting to an empty value - empty string, or character. Has allocated space in memory.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Write a SQL that returns the employee name and title for all employees with even
+number as actual salary (to_date is 9999-01-01)
+
+***Syntax 1999***
+
+select e.first_name Name, t.title Title
+from employees e join titles t
+      on e.emp_no = t.emp_no
+join salaries s
+      on t.to_date = s.to_date
+where salary %2 = 0
+and s.to_date='9999-01-01'
+
+***Standard syntax***
+
+select e.first_name Name, t.title Title
+From employees e, titles t, salaries s
+where e.emp_no=t.emp_no AND
+      t.to_date=s.to_date AND
+      salary %2 = 0 AND
+      s.to_date='9999-01-01';
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+What is wrong with the following query, re-write it making the needed corrections.
+SELECT employee.emp_no, AVG(salaries.salary)
+FROM employee INNER JOIN salaries AT employee.emp_no = salaries.emp_no
+HAVING AVG(salaries.salary) > 10000
+GROUP BY employee.emp_no
+
+************CORRECT VERSION*************
+
+SELECT employees.emp_no, AVG(salaries.salary)
+From employees
+INNER JOIN  salaries on employees.emp_no = salaries.emp_no
+GROUP BY employees.emp_no
+HAVING AVG(salaries.salary) > 10000;
+
+
+
