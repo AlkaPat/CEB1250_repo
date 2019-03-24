@@ -1,0 +1,42 @@
+In Class Exercise:
+
+Create (weber:captain {name:“Shea Michael Weber”, acquired:2016, postion:Defence})
+
+Create (domi:player {name:“Max Domi”, acquired:2018, postion:Centre})
+
+Create (price:player {name:“Carey Price”, acquired:2015, postion:goaltender})
+
+Create (petry:player {name:“Jeff Petry”, acquired:2015, postion:Defence})
+
+Create (benn:player {name:“Jordie Benn”, acquired:2015, postion:Defence})
+
+
+Create (habs:team {name:“Montreal Canadians”, sport:”ice hockey”, league:”NHL”})
+
+Create (weber)-[r:rosters{season: 2019}]->(habs)
+Create (domi)-[r:rosters{season: 2019}]->(habs)
+Create (price)-[r:rosters{season: 2019}]->(habs)
+Create (petry)-[r:rosters{season: 2019}]->(habs)
+Create (benn)-[r:rosters{season: 2019}]->(habs)
+
+
+
+match(p:player) RETURN max(p.acquired)
+
+match(p:player) RETURN max(p.acquired)
+
+match(p:player) return p
+
+match(c:captain), (t:team),(p:player) return c, t, p
+
+create (petry)-[r:rosters{season:"2019"}]->(habs)
+
+create (habs:team {name:"Montreal Canadians",sport:"ice hockey",league:"NHL"})
+
+match (p:player),(c:captain) where c.position="Defence" and p.position="defence" remove p.position, c.position
+
+
+match (p:player),(c:captain) where c.position="Defence" and p.position="defence" remove p.position, c.position
+
+
+MATCH(Weber) SET Weber :player return Weber
