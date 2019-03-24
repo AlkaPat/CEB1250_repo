@@ -1,0 +1,32 @@
+CREATE KEYSPACE cycling
+WITH replication ={'class':'SimpleStrategy', 'replication_factor' :3};
+
+
+
+
+CREATE TABLE rank_by_year_and_name (
+    ID primary key int
+    rank int ,
+    year int,
+    race_name txt,
+    cyclist_name txt);
+
+
+
+
+Insert 10 rows on the table created on slide 28.
+
+
+
+Insert into cycling.rank_by_year_and_name (rank, year, race_name, cyclist_name)
+Values(1,2013,'race1','tom'),(2,2013,'race1','Bom'), (etc).....
+
+Query the first ranked cyclist on 2014
+
+select cyclist_name, from cycling.rank_by_year_and_name where rank=1 and year=2014;
+
+
+
+Update the name of the first ranked cyclist in 2015 to “Frank”
+
+UPDATE cycling.rank_by_year_and_name set name[2015] = 'Frank' where rank=1
